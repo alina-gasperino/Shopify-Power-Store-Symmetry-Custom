@@ -917,7 +917,7 @@
     "coll_grid_image_shape": "square",
     "coll_grid_image_position": "center center",
     "coll_grid_show_count": true,
-    "prod_thumb_shape": "portrait-23",
+    "prod_thumb_shape": "square",
     "prod_thumb_text_align": "left",
     "prod_thumb_hover_image": true,
     "prod_thumb_options_names": "Color, Size",
@@ -1079,6 +1079,17 @@
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "5059203847231188605": {
+        "type": "shopify:\/\/apps\/smart-product-filter-search\/blocks\/app-embed\/5cc1944c-3014-4a2a-af40-7d65abc0ef73",
+        "disabled": false,
+        "settings": {
+          "productGridSelector": "",
+          "customJs": "",
+          "customCss": ""
+        }
+      }
+    }
   }
 }

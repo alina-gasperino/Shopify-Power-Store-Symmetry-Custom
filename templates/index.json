@@ -22,6 +22,148 @@
         "overlay_style": "full"
       }
     },
+    "950198dc-9ae7-4db7-87d6-12d503ce4ffc": {
+      "type": "logo-list",
+      "blocks": {
+        "32b62c52-de86-418a-a1da-2de7d3dfa49b": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/servappetit.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Servappetit",
+            "title": ""
+          }
+        },
+        "9efd6a57-5f7f-4a1f-9924-f195d6d5cb2f": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Bigfoot.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Bigfoot",
+            "title": ""
+          }
+        },
+        "9f23ca73-8960-4ae5-88e5-d69b525a245c": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/cuisinart-logo-BMS-2019.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Cuisinart",
+            "title": ""
+          }
+        },
+        "efa5a204-ace4-45d0-8ea7-ba39bfe20786": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/stanley-fans-logo-vector.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Stanley",
+            "title": ""
+          }
+        },
+        "3c13f6f5-07b3-43cf-a8e0-d7471ebc9116": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Coleman-logo.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Coleman",
+            "title": ""
+          }
+        },
+        "0d93b71a-c036-41df-8da0-8b6882c065a9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Jim_Beam_logo_svg.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Jim+Beam",
+            "title": ""
+          }
+        },
+        "b4ea5773-7109-426e-ba8c-2b5c8329556f": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/placeholder.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Brentwood",
+            "title": ""
+          }
+        },
+        "c0d22674-1929-4f03-ae79-cc1c529a92d6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/LouLU.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=LouLu",
+            "title": ""
+          }
+        },
+        "543439ea-7be6-45a1-8722-282bc2991bd6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Moderne_Elegance.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Moderne+Elegance",
+            "title": ""
+          }
+        },
+        "2b165bc4-8a85-457f-b2d9-8a499e805fb5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Blvck_Paris_Black.webp",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=BLVCK",
+            "title": ""
+          }
+        },
+        "b759f7a0-85af-4f4a-b9cc-ac02c39fc2c6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Journeyman.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Journeyman",
+            "title": ""
+          }
+        },
+        "bd82f335-c7f9-48e6-bf88-e2eb0f0ba3b5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/images.jpg",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Landshark",
+            "title": ""
+          }
+        },
+        "72abd6ab-806f-4ec4-a2aa-3a819d202252": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Document_1.png",
+            "image_width": 160,
+            "link": "https:\/\/the-power-store-6002.myshopify.com\/collections\/all?gf_101054=Tustin",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "32b62c52-de86-418a-a1da-2de7d3dfa49b",
+        "9efd6a57-5f7f-4a1f-9924-f195d6d5cb2f",
+        "9f23ca73-8960-4ae5-88e5-d69b525a245c",
+        "efa5a204-ace4-45d0-8ea7-ba39bfe20786",
+        "3c13f6f5-07b3-43cf-a8e0-d7471ebc9116",
+        "0d93b71a-c036-41df-8da0-8b6882c065a9",
+        "b4ea5773-7109-426e-ba8c-2b5c8329556f",
+        "c0d22674-1929-4f03-ae79-cc1c529a92d6",
+        "543439ea-7be6-45a1-8722-282bc2991bd6",
+        "2b165bc4-8a85-457f-b2d9-8a499e805fb5",
+        "b759f7a0-85af-4f4a-b9cc-ac02c39fc2c6",
+        "bd82f335-c7f9-48e6-bf88-e2eb0f0ba3b5",
+        "72abd6ab-806f-4ec4-a2aa-3a819d202252"
+      ],
+      "settings": {
+        "title": "Top Brands",
+        "image_opacity": 100,
+        "use_alt_bg": false
+      }
+    },
     "a191f97a-1458-42d8-bc68-5febd1c2106f": {
       "type": "collection-list",
       "blocks": {
@@ -85,7 +227,7 @@
         "b72eb92b-b034-4740-9374-91906b59abc5"
       ],
       "settings": {
-        "title": "Collection list",
+        "title": "Featured Categories",
         "enable_carousel": true,
         "grid": 4,
         "use_alt_bg": false,
@@ -124,7 +266,7 @@
     "featured-collection-1": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured collection",
+        "title": "Popular Products",
         "collection": "total-relaxation",
         "show_vendor": true,
         "enable_carousel": true,
@@ -219,7 +361,7 @@
         "color_bg": "rgba(0,0,0,0)",
         "full_width": true,
         "heading": "Power Promotions",
-        "address": "<p>6845 Escondido Street #107<br\/>Las Vegas, NV 89119<\/p><p><br\/><a href=\"tel:7025416099\">(702) 541-6099<\/a><\/p><p><a href=\"mailto:sales@powerpromotionsllc.com\">sales@powerpromotionsllc.com<\/a><\/p>",
+        "address": "<p><strong>Address:<\/strong> 6845 Escondido Street #107 Las Vegas, NV 89119<br\/><strong>Phone:<\/strong> <a href=\"tel:7025416099\" title=\"tel:7025416099\">(702) 541-6099<\/a><br\/><strong>Email:<\/strong> <a href=\"mailto:sales@powerpromotionsllc.com\" title=\"mailto:sales@powerpromotionsllc.com\">sales@powerpromotionsllc.com<\/a><\/p>",
         "button": "Directions",
         "show_pin": true,
         "show_feature_image": false,
@@ -233,12 +375,13 @@
       "settings": {
         "title": "Subscribe to our newsletter",
         "subheading": "<p>Promotions, new products and sales. Directly to your inbox.<\/p>",
-        "color_bg": "#ffffff"
+        "color_bg": "#ed3542"
       }
     }
   },
   "order": [
     "ed2f66d8-9138-43f3-845e-1aefd4aab3fa",
+    "950198dc-9ae7-4db7-87d6-12d503ce4ffc",
     "a191f97a-1458-42d8-bc68-5febd1c2106f",
     "rich-text-1",
     "featured-collection-1",
