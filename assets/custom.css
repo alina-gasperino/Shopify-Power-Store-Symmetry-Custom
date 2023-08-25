@@ -1,0 +1,9 @@
+.logo-list-container {
+    overflow: visible;
+}
+.logo-list__logo .rimage-wrapper {
+    padding-top: 100% !important;
+}
+.slick-slide.logo-list__logo {
+    margin-bottom: 0;
+}

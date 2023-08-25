@@ -6,11 +6,6 @@
     #section-id-{{ section.id }} .logo-list__link:hover .logo-list__logo-image {
       opacity: {{ section.settings.image_opacity | times: 1.2 | at_most: 100 }}%;
     }
-    {%- for block in section.blocks -%}
-      #section-id-{{ section.id }} .logo-list__logo-{{ forloop.index }} .logo-list__logo-image {
-        max-width: {{ block.settings.image_width }}px;
-      }
-    {%- endfor -%}
   {%- endstyle -%}
 
   <div class="container">
