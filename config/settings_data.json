@@ -914,7 +914,7 @@
     "font_size_nav_int": 14,
     "font_size_logo_int": 24,
     "button_style": "caps",
-    "coll_grid_image_shape": "square",
+    "coll_grid_image_shape": "tallest",
     "coll_grid_image_position": "center center",
     "coll_grid_show_count": true,
     "prod_thumb_shape": "square",
