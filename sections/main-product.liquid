@@ -8,6 +8,11 @@
   if settings.prod_pre_order_label_show and product.template_suffix == 'preorder'
     assign show_preorder_label = true
   endif
+  if product.metafields.custom.package
+    assign package = product.metafields.custom.package
+  else
+    assign package = 1
+  endif
 -%}
 
 <div data-section-type="main-product" data-components="accordion,modal">
@@ -298,6 +303,9 @@
                       endif
                     -%}
                     <div class="quantity-submit-row input-row {% if enable_dynamic_payment_button %}has-spb{% endif %}">
+                      {% if product.metafields.custom.package %}
+                        <div class="h4-style">Case: {{ package }}</div>
+                      {% endif %}
                       {% if block.settings.show_quantity_selector %}
                         <label for="quantity">
                           {{ 'products.product.quantity' | t }} {{ inventory_notice }}
@@ -308,6 +316,9 @@
                           <a href="#" data-quantity="up">{% render 'svg-plus' %}</a>
                         </div>
                       {% endif %}
+                      <p class="line-item-property__field">
+                        <input required id="product_case" type="number" name="properties[Package]" value={{ package }}>
+                      </p>
                       <div class="quantity-submit-row__submit input-row">
                         {%- capture add_to_cart_text -%}
                           {%- if product.template_suffix contains 'preorder' -%}

@@ -15,3 +15,6 @@
 .collection-slider .collection-listing .product-block .rimage-wrapper .rimage__image.cover {
     object-fit: contain;
 }
+.line-item-property__field {
+    display: none;
+}

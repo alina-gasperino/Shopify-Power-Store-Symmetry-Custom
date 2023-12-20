@@ -95,11 +95,9 @@
   {% section 'store-messages' %}
 
   <main id="content" role="main">
-    <div class="container cf">
-
-      {{ content_for_layout }}
-
-    </div><!-- /.container -->
+      <div class="container cf">
+        {{ content_for_layout }}
+      </div> 
   </main><!-- /#content -->
 
   {% if request.path != '/challenge' %}

@@ -3524,13 +3524,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           evt.preventDefault();
           var $form = $(this); //Disable add button
 
+          var data = $form.serializeArray();
+          const packageCase = data.find(item => item.name === "properties[Package]").value
+          const packageQty = data.find(item => item.name === "quantity").value
+          data.find(item => item.name === 'quantity').value = packageCase * packageQty;
+
+          const payload = $.param(data);
           $form.find('button[type="submit"]').attr('disabled', 'disabled').each(function () {
             $(this).data('previous-value', $(this).val());
           }).val(theme.strings.products_product_adding_to_cart); //Hide any existing notifications
 
           $('#cart-summary-overlay #shop-more').triggerHandler('click'); //Add to cart
 
-          $.post(shopifyAjaxAddURL, $form.serialize(), function (itemData) {
+          $.post(shopifyAjaxAddURL, payload, function (itemData) {
             //Dispatch change event
             document.documentElement.dispatchEvent(new CustomEvent('theme:cartchanged', {
               bubbles: true,
@@ -3553,8 +3559,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   addedQty = addedDataJSON.quantity,
                   addedImage = addedDataJSON.image,
                   productData = theme.OptionManager.getProductData($form),
+                  added_pack_Qty = addedDataJSON.properties.Package/addedQty,
                   originalVariantPrice = addedDataJSON.original_price; // The only way to get the compare at price is from the in-page JSON dump
-
+                  console.log(added_pack_Qty)
               for (var i = 0; i < productData.variants.length; i++) {
                 var variantData = productData.variants[i];
 
@@ -3633,7 +3640,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               cartShadeHTML = cartShadeHTML.replace('[[title]]', addedDataJSON.product_title);
               cartShadeHTML = cartShadeHTML.replace('[[encoded-title]]', addedDataJSON.product_title.replace(/"/g, '&quot;').replace(/&/g, '&amp;'));
               cartShadeHTML = cartShadeHTML.replace('[[variants]]', variantHtml);
-              cartShadeHTML = cartShadeHTML.replace(/\[\[quantity\]\]/g, addedQty);
+              cartShadeHTML = cartShadeHTML.replace(/\[\[quantity\]\]/g, added_pack_Qty);
               cartShadeHTML = cartShadeHTML.replace('[[image_url]]', theme.Shopify.formatImage(addedImage, '170x'));
               cartShadeHTML = cartShadeHTML.split('[[unit_price]]').join(unitPriceHtml);
               cartShadeHTML = cartShadeHTML.split('[[line_price]]').join(linePriceHtml);
@@ -5525,6 +5532,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         });
       },
       updateCart: function updateCart(params, successCallback) {
+        console.log(params)
         if (this.cartXhr) {
           this.cartXhr.abort();
         }
