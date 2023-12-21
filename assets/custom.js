@@ -31,4 +31,20 @@ $(document).ready(function () {
             }
           ]
     })
+   
+    $(".case_minus").click(function() {
+      if(parseInt($(this).closest(".case-quantity").find(".case_val").val()) == 1){
+        $(this).closest(".cart-item__quantity").find(".remove").click()
+      }
+      else {
+        $(this).closest(".case-quantity").find(".case_val").val(parseInt($(this).closest(".case-quantity").find(".case_val").val()) - 1)
+        $(this).closest(".cart-item__quantity").find(".quantity-down").click()
+      }      
+    })
+
+    $(".case_plus").click(function() {
+      console.log("up")
+      $(this).closest(".case-quantity").find(".case_val").val(parseInt($(this).closest(".case-quantity").find(".case_val").val()) + 1)
+      $(this).closest(".cart-item__quantity").find(".quantity-up").click()
+    })
 });

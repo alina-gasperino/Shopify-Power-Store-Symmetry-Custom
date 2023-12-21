@@ -128,8 +128,21 @@
             <span class="cart-link__icon">
               {%- render 'svg-cart' -%}
               {%- if cart.item_count > 0 -%}
-                <span class="cart-link__count">{{ cart.item_count }}</span>
-              {%- endif -%}
+                {%- assign cnt = 0 -%}
+                {% for item in cart.items %}
+                  {%- for p in item.properties -%}
+                    {% unless p.last == blank %}
+                        {% if p.first contains 'Package' %}
+                          {% assign case_amount = p.last | plus: 0 %}
+                        {% endif %}
+                    {% endunless %}
+                  {%- endfor -%}
+                  {%- assign quantity_as_int = item.quantity | divided_by: case_amount -%}
+
+                  {%- assign cnt = cnt | plus: quantity_as_int -%}
+                {%- endfor -%}
+              {%- endif -%}              
+              <span class="cart-link__count">{{ cnt }}</span>
             </span>
           </a>
         </div>

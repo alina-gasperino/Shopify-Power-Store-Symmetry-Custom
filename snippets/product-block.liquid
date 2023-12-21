@@ -105,6 +105,10 @@
               {% endif %}
               <div class="product-block__title">{{ product.title }}</div>
 
+              <div class="product-sku">
+                <span class="product-detail-label">{{ 'products.product.sku' | t }}</span> <span class="sku__value">{{ product.selected_or_first_available_variant.sku }}</span>
+              </div>
+
               <div class="product-price">
                 {% if product.price_varies %}
                   <span class="product-price__item product-price__from">{{ 'products.listing.from' | t }}</span>

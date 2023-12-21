@@ -3517,7 +3517,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   theme.applyAjaxToProductForm = function ($formContainer) {
     if (theme.settings.cart_type === 'drawer') {
       $formContainer.filter('[data-ajax-add-to-cart="true"]').find('form.product-purchase-form').each(function () {
-        var cartPopupTemplate = ['<div id="cart-summary-overlay" class="cart-summary-overlay">', '<div class="cart-summary-overlay__row-head">', '<div class="cart-summary-overlay__column-image">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_title, '</div>', '</div>', '<div class="cart-summary-overlay__column-item">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_item, '</div>', '</div>', '<div class="cart-summary-overlay__column-price-region">', '<div class="cart-summary-overlay__column-price">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_unit_price, '</div>', '</div>', '<div class="cart-summary-overlay__column-quantity">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_quantity, '</div>', '</div>', '<div class="cart-summary-overlay__column-total">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_total_price, '</div>', '</div>', '</div>', '<div class="cart-summary-overlay__column-subtotal">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_subtotal, '</div>', '</div>', '</div>', '<div class="cart-summary-overlay__row-body">', '<div class="cart-summary-overlay__column-image">', '<img src="[[image_url]]" alt="[[encoded-title]]" />', '</div>', '<div class="cart-summary-overlay__column-item">', '<div class="cart-summary-overlay__title">[[title]]</div>', '<div class="cart-summary-overlay__variants">[[variants]]</div>', '<div class="cart-summary-overlay__mobile-price-row">', '<div class="cart-summary-overlay__mobile-unit-price">[[unit_price]]</div>', '<div class="cart-summary-overlay__mobile-quantity">', theme.strings.products_added_notification_quantity, '<span class="cart-summary-overlay__quantity">[[quantity]]</span>', '</div>', '<div class="cart-summary-overlay__mobile-line-price">[[line_price]]</div>', '</div>', '</div>', '<div class="cart-summary-overlay__column-price-region">', '<div class="cart-summary-overlay__column-price">', '<span class="cart-summary-overlay__unit-price">[[unit_price]]</span>', '</div>', '<div class="cart-summary-overlay__column-quantity">', '<span class="cart-summary-overlay__quantity">[[quantity]]</span>', '</div>', '<div class="cart-summary-overlay__column-total">', '<div class="cart-summary-overlay__line-price">[[line_price]]</div>', '</div>', '[[line_discount]]', '</div>', '<div class="cart-summary-overlay__column-subtotal">', '<span class="cart-summary-overlay__subtotal">[[subtotal]]</span>', '<div class="cart-summary-overlay__note">', theme.strings.products_added_notification_shipping_note, '&nbsp;</div>', '</div>', '</div>', '<div class="cart-summary-overlay__actions">', '<a id="shop-more" class="button altcolour" href="#">', theme.strings.products_added_notification_keep_shopping, '</a>', '<a class="button to-cart" href="', theme.routes.cart_url, '">', theme.strings.products_added_notification_cart, '</a>', '</div>', '</div>'].join('');
+        var cartPopupTemplate = ['<div id="cart-summary-overlay" class="cart-summary-overlay">', '<div class="cart-summary-overlay__row-head">', '<div class="cart-summary-overlay__column-image">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_title, '</div>', '</div>', '<div class="cart-summary-overlay__column-item">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_item, '</div>', '</div>', '<div class="cart-summary-overlay__column-price-region">', '<div class="cart-summary-overlay__column-price">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_unit_price, '</div>', '</div>', '<div class="cart-summary-overlay__column-quantity">', '<div class="cart-summary-overlay__column-title">Case</div>', '</div>', '<div class="cart-summary-overlay__column-total">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_total_price, '</div>', '</div>', '</div>', '<div class="cart-summary-overlay__column-subtotal">', '<div class="cart-summary-overlay__column-title">', theme.strings.products_added_notification_subtotal, '</div>', '</div>', '</div>', '<div class="cart-summary-overlay__row-body">', '<div class="cart-summary-overlay__column-image">', '<img src="[[image_url]]" alt="[[encoded-title]]" />', '</div>', '<div class="cart-summary-overlay__column-item">', '<div class="cart-summary-overlay__title">[[title]]</div>', '<div class="cart-summary-overlay__variants">[[variants]]</div>', '<div class="cart-summary-overlay__mobile-price-row">', '<div class="cart-summary-overlay__mobile-unit-price">[[unit_price]]</div>', '<div class="cart-summary-overlay__mobile-quantity">', theme.strings.products_added_notification_quantity, '<span class="cart-summary-overlay__quantity">[[quantity]]</span>', '</div>', '<div class="cart-summary-overlay__mobile-line-price">[[line_price]]</div>', '</div>', '</div>', '<div class="cart-summary-overlay__column-price-region">', '<div class="cart-summary-overlay__column-price">', '<span class="cart-summary-overlay__unit-price">[[unit_price]]</span>', '</div>', '<div class="cart-summary-overlay__column-quantity">', '<span class="cart-summary-overlay__quantity">[[quantity]]</span>', '</div>', '<div class="cart-summary-overlay__column-total">', '<div class="cart-summary-overlay__line-price">[[line_price]]</div>', '</div>', '[[line_discount]]', '</div>', '<div class="cart-summary-overlay__column-subtotal">', '<span class="cart-summary-overlay__subtotal">[[subtotal]]</span>', '<div class="cart-summary-overlay__note">', theme.strings.products_added_notification_shipping_note, '&nbsp;</div>', '</div>', '</div>', '<div class="cart-summary-overlay__actions">', '<a id="shop-more" class="button altcolour" href="#">', theme.strings.products_added_notification_keep_shopping, '</a>', '<a class="button to-cart" href="', theme.routes.cart_url, '">', theme.strings.products_added_notification_cart, '</a>', '</div>', '</div>'].join('');
         var shopifyAjaxAddURL = theme.routes.cart_add_url + '.js';
         var shopifyAjaxCartURL = theme.routes.cart_url + '.js';
         $(this).on('submit', function (evt) {
@@ -3559,7 +3559,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   addedQty = addedDataJSON.quantity,
                   addedImage = addedDataJSON.image,
                   productData = theme.OptionManager.getProductData($form),
-                  added_pack_Qty = addedDataJSON.properties.Package/addedQty,
+                  added_pack_Qty = addedQty / addedDataJSON.properties.Package,
                   originalVariantPrice = addedDataJSON.original_price; // The only way to get the compare at price is from the in-page JSON dump
                   console.log(added_pack_Qty)
               for (var i = 0; i < productData.variants.length; i++) {
@@ -5466,6 +5466,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }, function () {
             // after update, set focus
             $('#' + toFocusId).focus();
+              
+            setTimeout(() => {
+              $(".case_minus").each(function(){
+                $(this).click(function() {
+                  if(parseInt($(this).closest(".case-quantity").find(".case_val").val()) == 1){
+                    $(this).closest(".cart-item__quantity").find(".remove").click()
+                  }
+                  else {
+                    $(this).closest(".case-quantity").find(".case_val").val(parseInt($(this).closest(".case-quantity").find(".case_val").val()) - 1)
+                    $(this).closest(".cart-item__quantity").find(".quantity-down").click()
+                  }      
+                })
+              })
+          
+              $(".case_plus").each(function(){
+                $(this).click(function() {
+                  $(this).closest(".case-quantity").find(".case_val").val(parseInt($(this).closest(".case-quantity").find(".case_val").val()) + 1)
+                  $(this).closest(".cart-item__quantity").find(".quantity-up").click()
+                })
+              })
+            }, 1000); 
           });
         }.bind(this));
         $(container).on('click.cartTemplateSection', '.quantity-down, .quantity-up', function (evt) {

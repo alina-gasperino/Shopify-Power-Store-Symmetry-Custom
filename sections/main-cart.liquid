@@ -15,7 +15,7 @@
         <div class="cart-item-list__head">
           <div class="cart-item-list-heading cart-item-list-heading--product">{{ 'cart.label.product' | t }}</div>
           <div class="cart-item-list-heading cart-item-list-heading--price">{{ 'cart.label.price' | t }}</div>
-          <div class="cart-item-list-heading cart-item-list-heading--quantity">{{ 'cart.label.quantity' | t }}</div>
+          <div class="cart-item-list-heading cart-item-list-heading--quantity">Case</div>
           <div class="cart-item-list-heading cart-item-list-heading--total">{{ 'cart.label.total' | t }}</div>
         </div>
         <div class="cart-item-list__body">
@@ -101,10 +101,25 @@
                   {% assign can_increase = true %}
                 {% endif %}
                 <div class="cart-item__column cart-item__quantity">
+                  {%- for p in item.properties -%}
+                    {% unless p.last == blank %}
+                        {% if p.first contains 'Package' %}
+                          {% assign case_amount = p.last | plus: 0 %}
+                        {% endif %}
+                    {% endunless %}
+                  {%- endfor -%}
+                  {%- assign quantity_as_int = item.quantity | plus: 0 -%}
+
+                  <div class="case-quantity buttoned-input">
+                    <a class="case_minus">{% render 'svg-minus' %}</a>
+                    <input class="case_val" type="text" value="{{ item.quantity | divided_by: case_amount }}" />
+                    <a class="case_plus">{% render 'svg-plus' %}</a>
+                  </div>
+                  
                   <div class="quantity buttoned-input">
-                    <a id="updates_dec_{{ forloop.index }}" class="notabutton quantity-down {% if item.quantity < 2 %}unusable{% endif %}" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" aria-label="{{ 'cart.label.decrease' | t | escape }}">{% render 'svg-minus' %}</a>
+                    <a id="updates_dec_{{ forloop.index }}" class="notabutton quantity-down {% if quantity_as_int <= case_amount  %}unusable{% endif %}" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" aria-label="{{ 'cart.label.decrease' | t | escape }}">{% render 'svg-minus' %}</a>
                     <input
-                      class="cart-item__quantity-input"
+                      class="cart-item__quantity-input" step="{{ case_amount }}"
                       type="text"
                       size="2"
                       id="updates_{{ forloop.index }}"

@@ -18,3 +18,14 @@
 .line-item-property__field {
     display: none;
 }
+.case_plus, .case_minus {
+    cursor: pointer;
+}
+.quantity.buttoned-input {
+    display: none;
+}
+.product-block__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #171717;
+}
