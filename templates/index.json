@@ -357,11 +357,14 @@
     },
     "map": {
       "type": "map",
+      "custom_css": [
+        ".button.altcolour {margin-top: 30px;}"
+      ],
       "settings": {
         "color_bg": "rgba(0,0,0,0)",
         "full_width": true,
         "heading": "Power Promotions",
-        "address": "<p><strong>Address:<\/strong> 6845 Escondido Street #107 Las Vegas, NV 89119<br\/><strong>Phone:<\/strong> <a href=\"tel:7025416099\" title=\"tel:7025416099\">(702) 541-6099<\/a><br\/><strong>Email:<\/strong> <a href=\"mailto:sales@powerpromotionsllc.com\" title=\"mailto:sales@powerpromotionsllc.com\">sales@powerpromotionsllc.com<\/a><\/p>",
+        "address": "<p><strong>Address:<\/strong> 6845 Escondido Street #107 Las Vegas, NV 89119<\/p><p><strong>Phone:<\/strong> <a href=\"tel:7025416099\" title=\"tel:7025416099\">(702) 541-6099<\/a><\/p><p><strong>Email:<\/strong> <a href=\"mailto:sales@powerpromotionsllc.com\" title=\"mailto:sales@powerpromotionsllc.com\">sales@powerpromotionsllc.com<\/a><\/p>",
         "button": "Directions",
         "show_pin": true,
         "show_feature_image": false,

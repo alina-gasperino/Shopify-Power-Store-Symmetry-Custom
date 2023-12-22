@@ -29,3 +29,17 @@
     font-weight: 600;
     color: #171717;
 }
+.block-inner-inner {
+    position: relative;
+}
+span.product-price__item.price-label.price-label--sold-out {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 12px;
+    z-index: 9;
+}

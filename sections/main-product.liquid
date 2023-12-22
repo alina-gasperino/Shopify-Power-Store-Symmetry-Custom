@@ -26,6 +26,15 @@
 
   <div class="product-detail quickbuy-content spaced-row container">
     <div class="gallery gallery-layout-{{ section.settings.prod_gall_thumbs_under }} gallery-size-{{ section.settings.gallery_size }} product-column-left {% if product.media.size > 1 %}has-thumbnails{% endif %}" data-cc-animate data-cc-animate-delay="0.2s">
+
+      {% if package > product.selected_or_first_available_variant.inventory_quantity %}
+        <span class="product-price__item price-label price-label--sold-out">{{ 'products.labels.sold_out' | t }}</span>
+      {% endif %}
+
+      {% unless product.available %}
+        <span class="product-price__item price-label price-label--sold-out">{{ 'products.labels.sold_out' | t }}</span>
+      {% endunless %}
+
       <div class="gallery__inner{% if section.settings.enable_sticky_gallery %} sticky-content-container{% endif %}">
         <div class="main-image">
           {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
@@ -278,71 +287,75 @@
                   </select>
 
                   {% if product.available %}
-                    {% if block.settings.show_inventory_notice %}
-                      {%- capture inventory_notice -%}
-                        {%- if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 -%}
-                          {%- if block.settings.inventory_notice_threshold == 0 or current_variant.inventory_quantity <= block.settings.inventory_notice_threshold -%}
-                            <div class="product-inventory-notice">
-                              {{- 'products.labels.only_x_left' | t: quantity: current_variant.inventory_quantity -}}
-                            </div>
+                    {% if package > product.selected_or_first_available_variant.inventory_quantity %}
+                      <div class="product-unavailable">{{ 'products.product.product_unavailable' | t }}</div>
+                    {% else %}
+                      {% if block.settings.show_inventory_notice %}
+                        {%- capture inventory_notice -%}
+                          {%- if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 -%}
+                            {%- if block.settings.inventory_notice_threshold == 0 or current_variant.inventory_quantity <= block.settings.inventory_notice_threshold -%}
+                              <div class="product-inventory-notice">
+                                {{- 'products.labels.only_x_left' | t: quantity: current_variant.inventory_quantity -}}
+                              </div>
+                            {%- else -%}
+                              <div class="product-inventory-notice product-inventory-notice--no-inventory"></div>
+                            {%- endif -%}
                           {%- else -%}
                             <div class="product-inventory-notice product-inventory-notice--no-inventory"></div>
                           {%- endif -%}
-                        {%- else -%}
-                          <div class="product-inventory-notice product-inventory-notice--no-inventory"></div>
-                        {%- endif -%}
-                      {%- endcapture -%}
-                    {% endif %}
-
-                    {% unless block.settings.show_quantity_selector %}{{ inventory_notice }}{% endunless %}
-
-                    {%- liquid
-                      assign enable_dynamic_payment_button = false
-                      if block.settings.enable_payment_button and product.selling_plan_groups == empty and product.template_suffix != 'preorder'
-                        assign enable_dynamic_payment_button = true
-                      endif
-                    -%}
-                    <div class="quantity-submit-row input-row {% if enable_dynamic_payment_button %}has-spb{% endif %}">
-                      {% if product.metafields.custom.package %}
-                        <div class="h4-style">Case: {{ package }}</div>
-                      {% endif %}
-                      {% if block.settings.show_quantity_selector %}
-                        <label for="quantity">
-                          {{ 'products.product.quantity' | t }} {{ inventory_notice }}
-                        </label>
-                        <div class="quantity-wrapper">
-                          <a href="#" data-quantity="down">{% render 'svg-minus' %}</a>
-                          <input aria-label="{{ 'products.product.quantity' | t }}" id="quantity" type="text" name="quantity" value="1" />
-                          <a href="#" data-quantity="up">{% render 'svg-plus' %}</a>
-                        </div>
-                      {% endif %}
-                      <p class="line-item-property__field">
-                        <input required id="product_case" type="number" name="properties[Package]" value={{ package }}>
-                      </p>
-                      <div class="quantity-submit-row__submit input-row">
-                        {%- capture add_to_cart_text -%}
-                          {%- if product.template_suffix contains 'preorder' -%}
-                            {{ 'products.product.preorder' | t }}
-                          {%- else -%}
-                            {{ 'products.product.add_to_cart' | t }}
-                          {%- endif -%}
                         {%- endcapture -%}
-                        <button class="button button--large" type="submit" data-add-to-cart-text="{{ add_to_cart_text | escape }}">
-                          {{- add_to_cart_text -}}
-                        </button>
+                      {% endif %}
+
+                      {% unless block.settings.show_quantity_selector %}{{ inventory_notice }}{% endunless %}
+
+                      {%- liquid
+                        assign enable_dynamic_payment_button = false
+                        if block.settings.enable_payment_button and product.selling_plan_groups == empty and product.template_suffix != 'preorder'
+                          assign enable_dynamic_payment_button = true
+                        endif
+                      -%}
+                      <div class="quantity-submit-row input-row {% if enable_dynamic_payment_button %}has-spb{% endif %}">
+                        {% if product.metafields.custom.package %}
+                          <div class="h4-style">Case: {{ package }}</div>
+                        {% endif %}
+                        {% if block.settings.show_quantity_selector %}
+                          <label for="quantity">
+                            {{ 'products.product.quantity' | t }} {{ inventory_notice }}
+                          </label>
+                          <div class="quantity-wrapper">
+                            <a href="#" data-quantity="down">{% render 'svg-minus' %}</a>
+                            <input aria-label="{{ 'products.product.quantity' | t }}" id="quantity" type="text" name="quantity" value="1" />
+                            <a href="#" data-quantity="up">{% render 'svg-plus' %}</a>
+                          </div>
+                        {% endif %}
+                        <p class="line-item-property__field">
+                          <input required id="product_case" type="number" name="properties[Package]" value={{ package }}>
+                        </p>
+                        <div class="quantity-submit-row__submit input-row">
+                          {%- capture add_to_cart_text -%}
+                            {%- if product.template_suffix contains 'preorder' -%}
+                              {{ 'products.product.preorder' | t }}
+                            {%- else -%}
+                              {{ 'products.product.add_to_cart' | t }}
+                            {%- endif -%}
+                          {%- endcapture -%}
+                          <button class="button button--large" type="submit" data-add-to-cart-text="{{ add_to_cart_text | escape }}">
+                            {{- add_to_cart_text -}}
+                          </button>
+                        </div>
+                        {% if enable_dynamic_payment_button %}
+                          {{ form | payment_button }}
+                        {% endif %}
+
+                        {% if block.settings.show_backorder_text == true %}
+                          {% render 'backorder', product: product, variant: current_variant %}
+                        {% endif %}
                       </div>
-                      {% if enable_dynamic_payment_button %}
-                        {{ form | payment_button }}
-                      {% endif %}
 
-                      {% if block.settings.show_backorder_text == true %}
-                        {% render 'backorder', product: product, variant: current_variant %}
-                      {% endif %}
-                    </div>
-
-                    {%- unless block.settings.show_pickup_availability == false -%}
-                      {% render 'store-availability', product: product, current_variant: current_variant %}
-                    {%- endunless -%}
+                      {%- unless block.settings.show_pickup_availability == false -%}
+                        {% render 'store-availability', product: product, current_variant: current_variant %}
+                      {%- endunless -%}
+                    {% endif %}
 
                   {% else %}
                     <div class="product-unavailable">{{ 'products.product.product_unavailable' | t }}</div>

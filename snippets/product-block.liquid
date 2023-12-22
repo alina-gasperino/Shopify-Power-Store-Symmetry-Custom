@@ -18,6 +18,21 @@
 <div data-product-id="{{ product.id }}" class="product-block" {% if animate %}data-cc-animate{% endif %}>
   <div class="block-inner">
     <div class="block-inner-inner">
+
+      {% if product.metafields.custom.package %}
+        {% if product.metafields.custom.package > product.selected_or_first_available_variant.inventory_quantity %}
+          <span class="product-price__item price-label price-label--sold-out">{{ 'products.labels.sold_out' | t }}</span>
+        {% endif %}
+      {% endif %}
+
+      {% if settings.prod_sold_out_show and product.available == false %}
+        <span class="product-price__item price-label price-label--sold-out">{{ 'products.labels.sold_out' | t }}</span>
+      {% elsif settings.prod_pre_order_label_show and product.template_suffix == 'preorder' %}
+        <span class="product-price__item price-label price-label--preorder">{{ 'products.product.preorder' | t }}</span>
+      {% elsif settings.prod_sale_show and cheapest_variant.compare_at_price > cheapest_variant.price %}
+        <span class="product-price__item price-label price-label--sale">{{ 'products.labels.sale' | t }}</span>
+      {% endif %}
+
       {% if product.featured_media %}
         {%- liquid
           assign aspect_ratios_same = true
@@ -87,7 +102,7 @@
           {%- endif -%}
 
           {% if settings.quickbuy_style == 'button' %}
-            <a class="btn btn--secondary quickbuy-toggle" href="{{ product_url }}">{{ 'products.quick_buy.launch' | t }}</a>
+            <a class="btn btn--primary quickbuy-toggle" href="{{ product_url }}">{{ 'products.quick_buy.launch' | t }}</a>
           {% endif %}
         </div>
       {% else %}
@@ -116,14 +131,6 @@
                 <span class="product-price__item product-price__amount {% if cheapest_variant.compare_at_price > cheapest_variant.price %}product-price__amount--on-sale{% endif %} theme-money">{{ cheapest_variant.price | money }}</span>
                 {% if cheapest_variant.compare_at_price > cheapest_variant.price %}
                   <span class="product-price__item product-price__compare theme-money">{{ cheapest_variant.compare_at_price | money }}</span>
-                {% endif %}
-
-                {% if settings.prod_sold_out_show and product.available == false %}
-                  <span class="product-price__item price-label price-label--sold-out">{{ 'products.labels.sold_out' | t }}</span>
-                {% elsif settings.prod_pre_order_label_show and product.template_suffix == 'preorder' %}
-                  <span class="product-price__item price-label price-label--preorder">{{ 'products.product.preorder' | t }}</span>
-                {% elsif settings.prod_sale_show and cheapest_variant.compare_at_price > cheapest_variant.price %}
-                  <span class="product-price__item price-label price-label--sale">{{ 'products.labels.sale' | t }}</span>
                 {% endif %}
               </div>
 
