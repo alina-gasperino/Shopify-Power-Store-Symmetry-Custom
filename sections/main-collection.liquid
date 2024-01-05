@@ -361,23 +361,27 @@
                       <div class="toggle-target-container">
                         {% case filter.type %}
                         {% when "list" %}
-                          {%- for value in filter.values -%}
-                            <label class="filter-group__item{% if value.active %} filter-group__item--active{% endif %}{% if value.count == 0 and value.active == false %} filter-group__item--disabled{% endif %}" data-tag="{{ value.label | handle }}">
-                              {% if filter_group_is_swatch %}<span class="filter-group__item__swatch{% if settings.swatch_images %} lazyload{% endif %}" {% if settings.swatch_images %}data-bgset="{{ value.label | handle | append: '.png' | file_img_url: '48x48', crop: 'center' }}"{% else %}style="background-color:{{ value.label | downcase | remove: ' ' | escape }}"{% endif %}></span>{% endif %}
-                              <input class="filter-group__checkbox"
-                                id="Filter-{{ value.param_name }}-{{ value.value | handle }}"
-                                type="checkbox"
-                                name="{{ value.param_name }}"
-                                value="{{ value.value | escape }}"
-                                {% if value.active %}checked{% endif %}
-                                {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                          {% if filter.label == "Quantity" %}
+                            {% render 'quantity-range', filter: filter, request: request %}
+                          {% else %}
+                            {%- for value in filter.values -%}
+                              <label class="filter-group__item{% if value.active %} filter-group__item--active{% endif %}{% if value.count == 0 and value.active == false %} filter-group__item--disabled{% endif %}" data-tag="{{ value.label | handle }}">
+                                {% if filter_group_is_swatch %}<span class="filter-group__item__swatch{% if settings.swatch_images %} lazyload{% endif %}" {% if settings.swatch_images %}data-bgset="{{ value.label | handle | append: '.png' | file_img_url: '48x48', crop: 'center' }}"{% else %}style="background-color:{{ value.label | downcase | remove: ' ' | escape }}"{% endif %}></span>{% endif %}
+                                <input class="filter-group__checkbox"
+                                  id="Filter-{{ value.param_name }}-{{ value.value | handle }}"
+                                  type="checkbox"
+                                  name="{{ value.param_name }}"
+                                  value="{{ value.value | escape }}"
+                                  {% if value.active %}checked{% endif %}
+                                  {% if value.count == 0 and value.active == false %}disabled{% endif %}>
 
-                              <span class="filter-group__item__text">{{ value.label }}</span>
-                              {% if section.settings.show_filter_counts and filter_group_is_swatch == false %}
-                                <span class="filter-group__item__count">{{ value.count }}</span>
-                              {% endif %}
-                            </label>
-                          {%- endfor -%}
+                                <span class="filter-group__item__text">{{ value.label }}</span>
+                                {% if section.settings.show_filter_counts and filter_group_is_swatch == false %}
+                                  <span class="filter-group__item__count">{{ value.count }}</span>
+                                {% endif %}
+                              </label>
+                            {%- endfor -%}
+                          {% endif %}
 
                         {% when "price_range" %}
                           {% render 'price-range', filter: filter %}

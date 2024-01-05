@@ -1,0 +1,111 @@
+{% assign qtys = '' %}
+
+{% paginate collections['all'].products by 300 %}
+    {% for product in collections['all'].products %}
+        {% assign qtys = qtys | append: ',' | append: product.selected_or_first_available_variant.inventory_quantity %}
+    {% endfor %}
+{% endpaginate %}
+
+{% assign qtys = qtys | remove_first: ',' | split: ',' %}
+{% assign max_qty = 0 %}
+
+{% for qty in qtys %}
+    {% assign qty_num = qty | plus: 0 %}
+    {% if qty_num > max_qty %}
+        {% assign max_qty = qty_num %}
+    {% endif %}
+{% endfor %}
+
+{% assign quantity_available_max = max_qty %}
+{% assign quantity_available_min = 0 %}
+
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+  {%- assign queryStrings = contentForQuerystring
+    | split: '"pageurl":"'
+    | last
+    | split: '"'
+    | first
+    | split: '.myshopify.com'
+    | last
+    | replace: '\/', '/'
+    | replace: '%20', ' '
+    | replace: '\u0026', '&'
+    | split: '?'
+    | last
+    | split: '&'
+  -%}
+
+  {% for querystring in queryStrings %}
+    {% assign splitQueryString = querystring | split: '=' %}
+    {% if splitQueryString[0] == "quantity_available_min" %}
+        {% assign quantity_available_min = splitQueryString[1] | plus: 0 %}
+    {% elsif splitQueryString[0] == "quantity_available_max" %}
+        {% assign quantity_available_max = splitQueryString[1] | plus: 0 %}
+    {% endif %}
+  {% endfor %}
+
+<div class="cc-price-range">
+<div class="cc-price-range__input-row">
+    <div class="cc-price-range__input-container">
+    <input class="cc-price-range__input cc-price-range__input--min"
+        id="CCQuantityRangeMin"
+        name="quantity_available_min"
+        value="{{ quantity_available_min }}"
+        placeholder="0"
+        type="text"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        step="10"
+        min="0"
+        max="{{ max_qty }}"
+        aria-label="{{ 'collections.price_range.min_label' | t | escape }}" />
+    </div>
+    <div class="cc-price-range__input-container">
+    <input class="cc-price-range__input cc-price-range__input--max"
+        id="CCQuantityRangeMax"
+        name="quantity_available_max"
+        value="{{ quantity_available_max }}"
+        placeholder="{{ max_qty }}"
+        type="text"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        step="10"
+        min="0"
+        max="{{ max_qty }}"
+        aria-label="{{ 'collections.price_range.max_label' | t | escape }}" />
+    </div>
+</div>
+
+<div class="cc-price-range__bar" id="quantity_range_bar">
+    <div class="cc-price-range__bar-inactive" id="quantity_range_bar-inactive"></div>
+    <div class="cc-price-range__bar-active" id="quantity_range_bar-active"></div>
+    <div class="cc-price-range__control cc-price-range__control--min" id="quantity_range_bar-min"></div>
+    <div class="cc-price-range__control cc-price-range__control--max" id="quantity_range_bar-max"></div>
+</div>
+</div>
+
+{%- for value in filter.values -%}
+    {{ value.url_to_remove }}
+    {% assign numeric_value = value.value | plus: 0 %}
+    <label class="filter-group__item{% if value.active %} filter-group__item--active{% endif %}" data-tag="{{ value.label | handle }}">
+      <input class="filter-group__checkbox"
+        id="Filter-{{ value.param_name }}-{{ value.value | handle }}"
+        type="checkbox"
+        name="{{ value.param_name }}"
+        value="{{ value.value | escape }}"
+        {% if quantity_available_min < numeric_value and quantity_available_max > numeric_value %}checked{% endif %}
+        {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+
+      <span class="filter-group__item__text">{{ value.label }}</span>
+      <span class="filter-group__item__count">{{ value.count }}</span>
+    </label>
+{%- endfor -%}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  jQuery(document).ready(function($) {
+    var quantity_available_max = {{ quantity_available_max }};
+    var quantity_available_min = {{ quantity_available_min }};
+    console.log(quantity_available_max)
+  });
+</script>
